@@ -30,7 +30,7 @@ function StudentForm({ setAuth }) {
     if (id) {
       const fetchStudent = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/students', getAuthHeaders());
+          const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/students`, getAuthHeaders());
           const student = response.data.find(s => s._id === id);
           if (student) {
             setFormData({
@@ -56,9 +56,9 @@ function StudentForm({ setAuth }) {
     e.preventDefault();
     try {
       if (id) {
-        await axios.put(`http://localhost:5000/api/students/${id}`, formData, getAuthHeaders());
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/students/${id}`, formData, getAuthHeaders());
       } else {
-        await axios.post('http://localhost:5000/api/students', formData, getAuthHeaders());
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/students`, formData, getAuthHeaders());
       }
       navigate('/');
     } catch (error) {
