@@ -24,7 +24,7 @@ function StudentList({ setAuth }) {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/students`, getAuthHeaders());
+      const response = await axios.get('/api/students', getAuthHeaders());
       setStudents(response.data);
     } catch (error) {
       handleError(error);
@@ -34,7 +34,7 @@ function StudentList({ setAuth }) {
   const deleteStudent = async (id) => {
     if (window.confirm('Are you sure you want to delete this record?')) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/students/${id}`, getAuthHeaders());
+        await axios.delete(`/api/students/${id}`, getAuthHeaders());
         fetchStudents();
       } catch (error) {
         handleError(error);
